@@ -24,13 +24,41 @@ export class MapLinesComponent implements OnInit {
   // L.marker([47.7, 67.8]).addTo(map)
   //   .bindPopup('Hello, Leaflet!');
 
-  this.http.get('assets/lines-existing_0.geojson').subscribe((data: any) => {
+    function getLineStyle(feature: any) {
+    const layerName = feature.properties["#LayerName"];
+    let color, weight;
+
+    // Настройте цвет и толщину в зависимости от имени слоя
+    if (layerName === "1150 kV Lines-EXISTING") {
+        color = "red";
+        weight = 3.0;
+    } else if (layerName === "220 kV Lines-EXISTING") {
+        color = "green";
+        weight = 1;
+    } else if (layerName === "500 kV Lines-EXISTING"){
+        color = "orange";
+        weight = 2;
+    }
+
+    return {
+        color: color,
+        weight: weight
+    };
+}
+
+    this.http.get('assets/lines-existing_0.geojson').subscribe((data: any) => {
+        L.geoJSON(data, {
+            style: getLineStyle // Применяем функцию стиля
+        }).addTo(map);
+    });
+
+      this.http.get('assets/geoBoundaries-KZ.geojson').subscribe((data: any) => {
     this.geojsonLayer = L.geoJSON(data, {
       style: {
         fillColor: 'transparent',
-        weight: 2,
-        opacity: 1,
-        color: 'red',
+        weight: 0.5,
+        opacity: 0.8,
+        color: 'blue',
         fillOpacity: 0.5
       }
     }).addTo(map);

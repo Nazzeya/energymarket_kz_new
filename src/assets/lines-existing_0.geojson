@@ -3,7 +3,29 @@
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
                                                                                 
 "features": [
-{ "type": "Feature", "properties": { "#Opacity": 100, "#Component": 1, "#LayerName": "1150 kV Lines-EXISTING", "#Id": -214748364, "#Name": "<Path>", "#VertexCou": 3, "#Style": null, "#StrokeWei": 3.110000, "#PathClose": "F", "#Length": 292589.161079, "#ArtScale": 1.000000 }, "geometry": { "type": "LineString", "coordinates": [ [ 75.327556493342556, 52.240960617573784 ], [ 75.454005520494349, 52.827978170563242 ], [ 78.790890324901312, 53.236643256462344 ] ] } },
+    { 
+        "type": "Feature", 
+        "properties": { 
+            "#Opacity": 100, 
+            "#Component": 1, 
+            "#LayerName": "1150 kV Lines-EXISTING", 
+            "#Id": -214748364, "#Name": "<Path>", 
+            "#VertexCou": 3, 
+            "#Style": null, 
+            "#StrokeWei": 3.110000, 
+            "#PathClose": "F", 
+            "#Length": 292589.161079, 
+            "#ArtScale": 1.000000 
+        }, 
+        "geometry": { 
+            "type": "LineString", 
+            "coordinates": [ 
+                [ 75.327556493342556, 52.240960617573784 ], 
+                [ 75.454005520494349, 52.827978170563242 ], 
+                [ 78.790890324901312, 53.236643256462344 ] 
+            ] 
+        } 
+    },
 { "type": "Feature", "properties": { "#Opacity": 100, "#Component": 1, "#LayerName": "1150 kV Lines-EXISTING", "#Id": -214748364, "#Name": "<Path>", "#VertexCou": 3, "#Style": null, "#StrokeWei": 3.110000, "#PathClose": "F", "#Length": 400853.103912, "#ArtScale": 1.000000 }, "geometry": { "type": "LineString", "coordinates": [ [ 69.506128841570202, 53.224560778026252 ], [ 73.059551208718162, 52.938741971529943 ], [ 75.161504723855955, 52.205795129479846 ] ] } },
 { "type": "Feature", "properties": { "#Opacity": 100, "#Component": 1, "#LayerName": "1150 kV Lines-EXISTING", "#Id": -214748364, "#Name": "<Path>", "#VertexCou": 4, "#Style": null, "#StrokeWei": 3.110000, "#PathClose": "F", "#Length": 335541.740390, "#ArtScale": 1.000000 }, "geometry": { "type": "LineString", "coordinates": [ [ 64.161847520064356, 53.007528422780169 ], [ 64.904940049183367, 53.250816205014161 ], [ 66.620936125827015, 53.368314237940936 ], [ 69.123868067456016, 53.245396466275174 ] ] } },
 { "type": "Feature", "properties": { "#Opacity": 100, "#Component": 1, "#LayerName": "1150 kV Lines-EXISTING", "#Id": -214748364, "#Name": "<Path>", "#VertexCou": 3, "#Style": null, "#StrokeWei": 3.110000, "#PathClose": "F", "#Length": 315134.928040, "#ArtScale": 1.000000 }, "geometry": { "type": "LineString", "coordinates": [ [ 60.671195618392304, 54.989450727877617 ], [ 61.505166448104262, 54.919639170979096 ], [ 63.88856611673549, 53.043106825527111 ] ] } },
