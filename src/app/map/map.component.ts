@@ -27,6 +27,10 @@ export class MapComponent implements OnInit {
       this.addStationsToMap(data, map);
     });
 
+    // this.http.get('assets/substations.geojson').subscribe((data: any) => { //подстанции
+    //   this.addSubstations(data, map);
+    // })
+
 
   }
 
@@ -34,7 +38,7 @@ export class MapComponent implements OnInit {
     L.geoJSON(data, {
       style: {
         fillColor: 'transparent',
-        weight: 2,
+        weight: 1,
         opacity: 1,
         color: 'blue',
         fillOpacity: 0.5
@@ -42,16 +46,57 @@ export class MapComponent implements OnInit {
     }).addTo(map);
   }
 
+  addSubstations(data: any, map: L.Map){
+    const substationIcon = L.icon({
+      iconUrl: 'assets/icons/substation.png',
+      iconSize: [20, 20],
+      iconAnchor: [10, 20]
+    });
+
+    L.geoJSON(data.features, {
+    pointToLayer: function (feature, latlng) {
+      // Создание маркера для каждой подстанции
+      return L.marker(latlng, { icon: substationIcon });
+    },
+    onEachFeature: function (feature, layer) {
+      // Добавление всплывающей подсказки (popup) с информацией о подстанции
+      const properties = feature.properties;
+      const popupContent = `
+        <h3>${properties['название подстанции']}</h3>
+        <p><strong>Траспределительная компания:</strong> ${properties['распределительная компания']}</p>
+        <p><strong>Максимальное рабочее напряжение:</strong> ${properties['максимальное рабочее напряжение']}</p>
+        <p><strong>рабочее напряжение:</strong> ${properties['рабочее напряжение']}</p>
+      `;
+      layer.bindPopup(popupContent);
+    }
+  }).addTo(map);
+  }
+
   addStationsToMap(data: any, map: L.Map) {  //функция добавления станций
 
-   const stationIcon = L.icon({
-    iconUrl: 'assets/icons/generator.png',
-    iconSize: [20, 20],
-    iconAnchor: [10, 20]
-  });
+  const renewableIcon = L.icon({
+  iconUrl: 'assets/icons/renewable.png',
+  iconSize: [32, 32],
+  iconAnchor: [10, 20],
+});
+
+const defaultIcon = L.icon({
+  iconUrl: 'assets/icons/generator.png',
+  iconSize: [20, 20],
+  iconAnchor: [10, 20],
+});
 
   L.geoJSON(data.features, {
     pointToLayer: function (feature, latlng) {
+      const stationType = feature.properties['тип станции'];
+      let stationIcon;
+    // Выбор иконки в зависимости от типа станции
+      if (stationType === '(СЭС) Солнечная электростанция' || stationType === '(ГЭС) Гидроэлектростанция' || stationType === '(ВЭС) Ветряная электростанция') {
+        stationIcon = renewableIcon;
+      }  else {
+      // Установите стандартную иконку, если тип станции неизвестен
+        stationIcon = defaultIcon;
+      }
       // Создание маркера для каждой станции
       return L.marker(latlng, { icon: stationIcon });
     },
@@ -72,5 +117,7 @@ export class MapComponent implements OnInit {
     }
   }).addTo(map);
   }
+
+  
 
 }
